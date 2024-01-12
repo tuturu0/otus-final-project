@@ -1,0 +1,9 @@
+.env
+data/
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
+variables.pkr.hcl
+variables.json

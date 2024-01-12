@@ -1,0 +1,61 @@
+version: "3"
+services:
+  ui:
+    image: $CRAWLER_UI_IMAGE
+    restart: unless-stopped
+    hostname: "ui"
+    ports:
+      - 80:8000
+    environment:
+      - MONGO=${MONGO_HOST}
+      - MONGO_PORT=${MONGO_PORT}
+    depends_on:
+      - crawler
+      - mongo
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: service.crawler
+
+
+  crawler:
+    image: $CRAWLER_IMAGE
+    restart: unless-stopped
+    hostname: "crawler"
+    environment:
+      - MONGO=${MONGO_HOST}
+      - MONGO_PORT=${MONGO_PORT}
+      - RMQ_HOST=${RABBIT_HOST}
+      - RMQ_QUEUE=crawler
+      - RMQ_USERNAME=${RABBIT_USER}
+      - RMQ_PASSWORD=${RABBIT_PASS}
+      - CHECK_INTERVAL=${CRAWLER_CHECK_INTERVAL}
+      - EXCLUDE_URLS=${CRAWLER_EXCLUDE_URLS}
+    command: "${CRAWLER_URL_TO_SEARCH}"
+    depends_on:
+      - mongo
+      - rabbit_mq
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: service.crawler
+
+  mongo:
+    image: $MONGO_IMAGE
+    restart: unless-stopped
+    hostname: "mongodb"
+    volumes:
+      - ${MONGO_DATA_FOLDER}:/data/db
+  
+  rabbit_mq:
+    image: $RABBIT_MQ_IMAGE
+    restart: unless-stopped
+    hostname: "rabbitmq"
+    environment:
+      - RABBITMQ_DEFAULT_USER=$RABBIT_USER
+      - RABBITMQ_DEFAULT_PASS=$RABBIT_PASS
+
+
+

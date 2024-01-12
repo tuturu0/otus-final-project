@@ -1,0 +1,5 @@
+[gitlab]
+ubuntu-vm1 ansible_host=51.250.92.35
+
+[app]
+ubuntu-vm2 ansible_host=51.250.13.241

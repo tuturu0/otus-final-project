@@ -1,0 +1,10 @@
+variable "service_account_key_file" {
+    type = string
+    default = "key.json.example"
+}
+
+variable "folder_id" {
+    type = string
+    default = "some_id"
+}
+

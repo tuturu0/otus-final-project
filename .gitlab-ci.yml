@@ -1,0 +1,39 @@
+stages:
+  - build
+  - push
+  - deploy
+
+build:
+  tags:
+    - crawler
+  stage: build
+  script:
+    - echo 'building..'
+    - docker build -t tuturu0/crawler:$CRAWLER_VERSION ./search_engine_crawler
+    - docker build -t tuturu0/crawler_ui:$UI_VERSION ./search_engine_ui
+  when: manual
+      
+push:
+  tags:
+    - crawler
+  stage: push
+  script:
+    - echo 'pushing..'
+    - echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USER -p $DOCKER_TOKEN
+    - docker push tuturu0/crawler:$CRAWLER_VERSION
+    - docker push tuturu0/crawler_ui:$UI_VERSION
+  needs: ["build"]
+  when: on_success
+  
+deploy:
+  tags:
+    - crawler
+  stage: deploy
+  script:
+    - echo 'deploying..'
+    - docker compose -f /docker_sys/crawler/docker-compose.yml down
+    - sudo cp -r ./* /docker_sys/crawler
+    - docker compose -f /docker_sys/crawler/docker-compose.yml up -d
+    - echo 'ready!'
+  needs: ["build", "push"]
+  when: on_success
