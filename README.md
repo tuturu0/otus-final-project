@@ -40,13 +40,12 @@ docker compose up -d
 <br>
 Рабочий сервис:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
-<br>
 # Сборка образа:
 В каталоге packer выполнить:
 ```bash
 packer build -var-file=variables.pkr.hcl  ubuntu2204.pkr.hcl
 ```
-Предварительно заполнив значение переменных <br>
+Предварительно заполнив значение переменных
 # Развёртка образа:
 В каталоге terraform выполнить:
 ```bash
