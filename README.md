@@ -37,7 +37,7 @@ docker compose up -d
 - DOCKERHUB_USER
 - DOCKER_TOKEN
 - UI_VERSION
-</br>
+\
 Первая задача пайплайна запускается вручную, остальные запускаются только в случае успеха предыдущих
 # Рабочий сервис:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
