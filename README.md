@@ -40,3 +40,22 @@ docker compose up -d
 <br>
 Рабочий сервис:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
+# Сборка образа:
+В каталоге packer выполнить:
+```bash
+packer build -var-file=variables.pkr.hcl  ubuntu2204.pkr.hcl
+```
+Предварительно заполнив значение переменных <br>
+# Развёртка образа:
+В каталоге terraform выполнить:
+```bash
+terraform plan -var-file=terraform.tfvars
+terraform apply -var-file=terraform.tfvars
+```
+Предварительно заполнив значение переменных <br>
+В результате будет создано 2 виртуальных машины с пользователем "application" и его открытым ключом (для изменения ключа необходимо указать его в packer/configure.sh)
+# Установка Docker:
+Для этого используется плэйбук ansible для его запуска в каталоге ansible выполнить команду, предварительно заполнив инвентарник (в нём необходимо указать адрес gitlab сервера и сервера приложений):
+```bash
+ansible-playbook install_docker.yml
+```
