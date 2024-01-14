@@ -28,7 +28,7 @@ docker compose up -d
 ```bash
 docker compose up -d
 ```
-указав собственное значение перменной external_ur (или использовать собственный инстанс gitlab) <br>
+указав собственное значение перменной external_url (или использовать собственный инстанс gitlab) <br>
 # Перенести данный репозиторий в гитлаб и выполнить пайплайн:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_1.jpg)
 <br>
