@@ -38,7 +38,7 @@ docker compose up -d
 - DOCKER_TOKEN
 - UI_VERSION
 <br>
-Рабочий сервис:
+# Рабочий сервис:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
 # Сборка образа:
 В каталоге packer выполнить:
