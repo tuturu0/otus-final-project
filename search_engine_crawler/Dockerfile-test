@@ -1,0 +1,9 @@
+FROM python:3.6-alpine
+
+COPY ./ /app
+WORKDIR /app
+
+RUN cd search_engine_crawler && ls -l && pip install -r requirements.txt -r requirements-test.txt && pip install crawler
+
+ENTRYPOINT [ "/bin/sh", "search_engine_crawler/tests/test.sh" ]
+
