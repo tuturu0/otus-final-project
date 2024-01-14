@@ -1,0 +1,58 @@
+version: "3"
+services:
+
+  ui:
+    image: tuturu0/crawler_ui_test:latest
+    restart: unless-stopped
+    hostname: "ui"
+    ports:
+      - 8000:8000
+    environment:
+      - MONGO= mongo
+      - MONGO_PORT=27017
+    depends_on:
+      - crawler
+      - mongo
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: service.crawler
+
+
+  crawler:
+    image: tuturu0/crawler_test:latest
+    restart: unless-stopped
+    hostname: "crawler"
+    environment:
+      - MONGO=mongo
+      - MONGO_PORT=27017
+      - RMQ_HOST=rabbit_mq
+      - RMQ_QUEUE=crawler
+      - RMQ_USERNAME=rabbit_mq_test
+      - RMQ_PASSWORD=asdqwe123
+      - CHECK_INTERVAL=1
+      - EXCLUDE_URLS="'.*github.com'"
+    depends_on:
+      - mongo
+      - rabbit_mq
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: 127.0.0.1:24224
+        tag: service.crawler
+
+  mongo:
+    image: mongo:5.0.23-focal
+    restart: unless-stopped
+    hostname: "mongodb"
+
+  
+  rabbit_mq:
+    image: rabbitmq:3.12-management
+    restart: unless-stopped
+    hostname: "rabbitmq"
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbit_mq_test
+      - RABBITMQ_DEFAULT_PASS=asdqwe123
+
