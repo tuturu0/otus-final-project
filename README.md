@@ -41,13 +41,13 @@ docker compose up -d
 Первая задача пайплайна запускается вручную, остальные запускаются только в случае успеха предыдущих
 # Рабочий сервис:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
-# Сборка образа:
+# Сборка образа ОС:
 В каталоге packer выполнить:
 ```bash
 packer build -var-file=variables.pkr.hcl  ubuntu2204.pkr.hcl
 ```
 Предварительно заполнив значение переменных
-# Развёртка образа:
+# Развёртка образа ОС:
 В каталоге terraform выполнить:
 ```bash
 terraform plan -var-file=terraform.tfvars
