@@ -1,5 +1,5 @@
 import os
-from ui import ui
+from search_engine_ui.ui import ui
 import unittest
 import tempfile
 import mongomock
