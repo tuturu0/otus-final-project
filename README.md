@@ -26,4 +26,4 @@ docker compose up -d
 ```
 указав собственное значение перменной external_ur (или использовать собственный инстанс gitlab) <br>
 # Перенести данный репозиторий в гитлаб и выполнить пайплайн
-![Uploading изображение.png…]()
+![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_1.jpg)
