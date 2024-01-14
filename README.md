@@ -31,7 +31,7 @@ docker compose up -d
 указав собственное значение перменной external_url (или использовать собственный инстанс gitlab) <br>
 # Перенести данный репозиторий в гитлаб и выполнить пайплайн:
 ![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_1.jpg)
-<br>
+</br>
 Для работы пайплайна необходимо в настройках gitlab добавить следующие переменные:
 - CRAWLER_VERSION
 - DOCKERHUB_USER
