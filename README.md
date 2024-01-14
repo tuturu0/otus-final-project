@@ -37,3 +37,5 @@ docker compose up -d
 - DOCKERHUB_USER
 - DOCKER_TOKEN
 - UI_VERSION
+Рабочий сервис:
+![alt text](https://github.com/tuturu0/otus-final-project/blob/main/img/Screenshot_3.jpg)
