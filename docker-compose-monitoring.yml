@@ -12,7 +12,7 @@ services:
       - 9090:9090
 
   grafana:
-    image: grafana/grafana:5.0.0
+    image: grafana/grafana:8.5.13
     restart: unless-stopped
     volumes:
       - $GRAFANA_DATA:/var/lib/grafana
